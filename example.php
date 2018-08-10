@@ -6,6 +6,7 @@ use Edudip\Next\ApiClient\AbstractRequest;
 use Edudip\Next\ApiClient\EdudipNext;
 use Edudip\Next\ApiClient\Webinar;
 use Edudip\Next\ApiClient\WebinarDate;
+use Edudip\Next\ApiClient\Participant;
 
 // Set your API key
 EdudipNext::setApiKey('hq7NkOTiWnCJlfJqgrLnah9jhjmRJ0i3I751SVWy5jYT49M91NVtSIEJA4Q3');
@@ -36,7 +37,7 @@ $webinarDates = [
 
 // Creates a webinar
 $webinar = Webinar::create(
-    'Name/Title of the webinar',
+    'Name/Title of the webinar' . rand(1,20),
     $webinarDates,
     10, // Max participants
     true // Record webinar
@@ -49,5 +50,9 @@ $participant = new Participant(
     'Doe'
 );
 
-$webinar->registerParticipant();
+$registeredDates = $webinar->registerParticipant($participant);
+
+foreach ($registeredDates as $registeredDate) {
+    echo 'User is registered for webinar date ', $registeredDate['date'], ' room link: ', $registeredDate['room_link'], PHP_EOL;
+}
 

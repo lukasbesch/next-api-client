@@ -43,6 +43,25 @@ class Webinar extends AbstractRequest
         return $webinarDates;
     }
 
+    public function getId()
+    {
+        return $this->data['id'];
+    }
+
+    /**
+     * @param \Edudip\Next\ApiClient\Participant $participant
+     * @return array A list of dates, the participant may now attend with a personalized
+     *  link, that can be used on that date to enter the webinar room
+     */
+    public function registerParticipant(Participant $participant)
+    {
+        $params = $participant->toArray();
+
+        $resp = self::postRequest('/webinars/' . $this->getId() . '/landingpage/register', $params);
+        
+        return $resp['registeredDates'];
+    }
+
     /**
      * Returns a list of all webinars
      * @return array
@@ -94,5 +113,7 @@ class Webinar extends AbstractRequest
         $resp = self::postRequest('/webinars', $params);
 
         $webinar = new self($resp['webinar']);
+        
+        return $webinar;
     }
 }
