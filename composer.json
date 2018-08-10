@@ -1,0 +1,17 @@
+{
+    "name": "edudip/next-api-client",
+    "description": "Referenzimplementierung der edudip next API",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Marc Steinert",
+            "email": "m.steinert@edudip.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Edudip\\Next\\ApiClient\\": "src/Edudip/Next/ApiClient"
+        }
+    }
+}
