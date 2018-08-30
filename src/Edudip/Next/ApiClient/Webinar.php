@@ -79,6 +79,19 @@ class Webinar extends AbstractRequest
     }
 
     /**
+     * Retrieves a single webinar by id
+     * @param int $webinarId
+     * @return array
+     */
+    public static function getById($webinarId)
+    {
+        $resp = self::getRequest('/webinars/' . $webinarId);
+        $webinar = new self($resp['webinar']);
+
+        return $webinar;
+    }
+
+    /**
      * Creates a new webinar
      * @throws \Edudip\Next\ApiClient\Error\InvalidArgumentException
      * @return \Edudip\Next\ApiClient\Webinar
