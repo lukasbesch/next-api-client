@@ -10,3 +10,26 @@ This code can be used to list existing webinars, create new webinars and registe
 3. Open `src/example.php` and set your API key
 4. Execute `example.php`on the command line
 
+## How to integrate the library an existing project
+
+This library uses composer for dependency management. If you already use composer (https://getcomposer.org/) add the following  
+entry to the "repositories" field in your composer.json:
+
+```javascript
+"repositories": [
+    {
+        "type":"package",
+        "package": {
+          "name": "edudip/next-api-client",
+          "version":"master",
+          "source": {
+              "url": "https://github.com/edudip/next-api-client.git",
+              "type": "git",
+              "reference":"master"
+            }
+        }
+    }
+],
+```
+
+Additionally add the dependency `"edudip/next-api-client": "master"` to the "require" field.
