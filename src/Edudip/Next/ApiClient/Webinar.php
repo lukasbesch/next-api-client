@@ -51,6 +51,8 @@ class Webinar extends AbstractRequest
     /**
      * @throws \Edudip\Next\Error\InvalidArgumentException;
      * @param \Edudip\Next\ApiClient\Participant $participant
+     * @param string $date If the webinar registration type is "date", provide a webinar
+     *  date in the format "Y-m-d H:i:s" to which the participant should be registered to
      * @return array A list of dates, the participant may now attend with a personalized
      *  link, that can be used on that date to enter the webinar room
      */
