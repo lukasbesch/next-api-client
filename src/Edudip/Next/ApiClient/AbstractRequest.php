@@ -88,7 +88,7 @@ abstract class AbstractRequest
 
         if (array_key_exists('success', $json) && ! $json['success']) {
             if (array_key_exists('error', $json)) {
-                throw new ResponseException('API returned an error: ' . $json['error']);
+                throw new ResponseException('API returned an error: ' . is_array($json['error']) ? json_encode($json['error']) : $json['error']);
             } else if (array_key_exists('message', $json)) {
                 throw new ResponseException('API returned an error: ' . $json['message']);
             } else {
