@@ -81,4 +81,20 @@ final class WebinarDate implements JsonSerializable
 
         return $webinarDate;
     }
+
+    /**
+     * Tests, if the given input string is a valid Datetime
+     *  string in the form of "YYYY-MM-DD HH:MM:SS"
+     * @return boolean
+     */
+    public static function validateDateString($input)
+    {
+        $fmtStr = 'Y-m-d h:i:s';
+        $dt = DateTime::createFromFormat($fmtStr, $input);
+
+        return (
+            $dt !== false &&
+            $dt->format($fmtStr) === $input
+        );
+    }
 }

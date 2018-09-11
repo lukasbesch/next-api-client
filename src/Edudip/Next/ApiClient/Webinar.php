@@ -49,13 +49,24 @@ class Webinar extends AbstractRequest
     }
 
     /**
+     * @throws \Edudip\Next\Error\InvalidArgumentException;
      * @param \Edudip\Next\ApiClient\Participant $participant
      * @return array A list of dates, the participant may now attend with a personalized
      *  link, that can be used on that date to enter the webinar room
      */
-    public function registerParticipant(Participant $participant)
+    public function registerParticipant(Participant $participant, $date = null)
     {
         $params = $participant->toArray();
+
+        if ($this->data['registration_type'] === 'date') {
+            if ($date === null || ! WebinarDate::validateDateString($date)) {
+                throw new InvalidArgumentException(
+                    'Registration type for the webinar is "date". Please provide a valid webinar date to register a participant'
+                );
+            }
+            
+            $params['webinar_date'] = $date;
+        }
 
         $resp = self::postRequest('/webinars/' . $this->getId() . '/landingpage/register', $params);
         
