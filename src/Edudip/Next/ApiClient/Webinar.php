@@ -48,6 +48,33 @@ class Webinar extends AbstractRequest
         return $this->data['id'];
     }
 
+    public function getParticipants() : array
+    {
+        if (! array_key_exists('participants', $this->data)) {
+            return [ ];
+        }
+
+        return $this->data['participants'];
+    }
+
+    public function getModerators() : array
+    {
+        if (! array_key_exists('moderators', $this->data)) {
+            return [ ];
+        }
+
+        return $this->data['moderators'];
+    }
+
+    public function getUser() : array
+    {
+        if (! array_key_exists('user', $this->data)) {
+            return [ ];
+        }
+
+        return $this->data['user'];
+    }
+
     /**
      * @throws \Edudip\Next\Error\InvalidArgumentException;
      * @param \Edudip\Next\ApiClient\Participant $participant
@@ -70,7 +97,7 @@ class Webinar extends AbstractRequest
             $params['webinar_date'] = $date;
         }
 
-        $resp = self::postRequest('/webinars/' . $this->getId() . '/landingpage/register', $params);
+        $resp = self::postRequest('/webinars/' . $this->getId() . '/register-participant', $params);
         
         return $resp['registeredDates'];
     }
@@ -93,10 +120,9 @@ class Webinar extends AbstractRequest
 
     /**
      * Retrieves a single webinar by id
-     * @param int $webinarId
      * @return array
      */
-    public static function getById($webinarId)
+    public static function getById(int $webinarId)
     {
         $resp = self::getRequest('/webinars/' . $webinarId);
         $webinar = new self($resp['webinar']);
@@ -107,7 +133,6 @@ class Webinar extends AbstractRequest
     /**
      * Creates a new webinar
      * @throws \Edudip\Next\ApiClient\Error\InvalidArgumentException
-     * @return \Edudip\Next\ApiClient\Webinar
      */
     public static function create(
         string $title,
@@ -116,7 +141,7 @@ class Webinar extends AbstractRequest
         bool $recording,
         string $registrationType = 'series',
         string $access = 'all'
-    ) {
+    ) : Webinar {
         if (count($webinarDates) === 0) {
             throw new InvalidArgumentException('Please provide at least one webinar date');
         }
