@@ -13,20 +13,21 @@ final class EdudipNext
     // @var string The edudip next API key to be used to authenticate requests
     public static $apiKey;
 
+    // @var string
     public static $apiBase = 'https://api.edudip-next.com/api';
 
     /**
-     * @return string
+     * Returns the currently used API key.
      */
-    public static function getApiKey()
+    public static function getApiKey() : string
     {
         return self::$apiKey;
     }
 
     /**
-     * @param string $apiKey
+     * Sets the API key to use for all requests.
      */
-    public static function setApiKey($apiKey)
+    public static function setApiKey(string $apiKey)
     {
         self::$apiKey = $apiKey;
     }
@@ -34,5 +35,13 @@ final class EdudipNext
     public static function getApiBase()
     {
         return self::$apiBase;
+    }
+
+    /**
+     * Sets a new location for the API, useful for local debugging.
+     */
+    public static function setApiBase(string $apiBase)
+    {
+        self::$apiBase = $apiBase;
     }
 }

@@ -17,18 +17,20 @@ This library uses composer for dependency management. If you already use compose
 ```javascript
 "repositories": [
     {
-        "type":"package",
-        "package": {
-          "name": "edudip/next-api-client",
-          "version":"master",
-          "source": {
-              "url": "https://github.com/edudip/next-api-client.git",
-              "type": "git",
-              "reference":"master"
-            }
-        }
+        "url": "https://github.com/edudip/next-api-client.git",
+        "type": "git"       
     }
 ],
 ```
 
-Additionally add the dependency `"edudip/next-api-client": "master"` to the "require" field, then run `composer update`
+Then add the following lines to the ```autoload``` property:
+
+```javascript
+"autoload": {
+    "psr-4": {
+        "Edudip\\Next\\ApiClient\\": "vendor/edudip/next-api-client/src/Edudip/Next/ApiClient"
+    }
+},
+```
+
+Finally run `composer update` to install the api client as dependency.
