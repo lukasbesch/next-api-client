@@ -10,7 +10,6 @@ use Edudip\Next\ApiClient\Participant;
 
 // Set your API key
 EdudipNext::setApiKey('Ve9dDJWfZzacOWlix314pa5U96PpBIuaAC3QPVgCJSVf7204EXQvrb6mXF8b');
-EdudipNext::setApiBase('http://localhost:8000/api');
 
 // Lists all existing webinars:
 $allWebinars = Webinar::all();
