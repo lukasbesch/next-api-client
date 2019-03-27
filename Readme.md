@@ -34,3 +34,6 @@ Then add the following lines to the ```autoload``` property:
 ```
 
 Finally run `composer update` to install the api client as dependency.
+
+
+**Please** note that this code is a reference implementation and is an example of integration with your code base and is not guaranteed to work.
