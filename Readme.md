@@ -1,9 +1,12 @@
 
+# This Client is deprecated
+# This repository will be removed on 31.03.2022
+
 
 **Please** note that this code is a reference implementation and is an example of integration with your code base and is not guaranteed to work.
 **(PHP): Use libraries like guzzlehttp to realize your implementation.**
 
-# edudip next API example wrapper
+## edudip next API example wrapper
 
 Provides an example PHP wrapper for using the edudip next API (https://www.edudip-next.com/)
 This code can be used to list existing webinars, create new webinars and register new participants.
